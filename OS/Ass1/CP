@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char **argv)
+{
+    printf("arg %d", argc);
+    if(strcmp(argv[1], argv[2]) !=0)
+    {
+        char fs[100];
+        FILE *fptr;
+        fptr = fopen(argv[1], "r+");
+       
+        if(fptr)
+        {
+            FILE *fn = fopen(argv[2], "w");
+            while(fscanf(fptr, "%s", fs) != EOF)
+            {
+                 fprintf(fn, "%s\n", fs);
+            }
+        }
+        else
+        {
+            printf("\n OOPS... file does not exits or failed to open ...........");
+           
+        }
+        fclose(fptr);
+    }
+    else
+    {
+        printf("\n Source and desrination files are same \n");
+    }
+    return 0;
+}
